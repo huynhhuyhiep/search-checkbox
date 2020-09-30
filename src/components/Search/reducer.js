@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const NEWS = {
   FETCHING: 'NEWS_FETCHING',
   SUCCESS: 'NEWS_FETCH_SUCCESS',
@@ -7,16 +9,22 @@ const NEWS = {
 export const fetchNews = (query) => async (dispatch) => {
   dispatch({ type: NEWS.FETCHING });
   try {
-    const response = await fetch(
-      `https://hn.algolia.com/api/v1/search?query=${query}`
-    );
+    const { data } = await axios({
+      url: `https://hn.algolia.com/api/v1/search?m=0&query=${encodeURIComponent(
+        query
+      )}`,
+    });
+
+    console.log('response', data);
     dispatch({
       type: NEWS.SUCCESS,
-      payload: await response.json(),
-      keyword: query,
+      payload: data,
     });
   } catch (error) {
-    dispatch({ type: NEWS.FAIL, payload: error });
+    dispatch({
+      type: NEWS.FAIL,
+      payload: 'Sorry, something went wrong, please try again!',
+    });
   }
 };
 

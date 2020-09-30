@@ -19,7 +19,6 @@
     "prettier/prettier": [
       "error",
       {
-        "printWidth": 80,
         "trailingComma": "es5",
         "semi": true,
         "no-mixed-spaces-and-tabs": [

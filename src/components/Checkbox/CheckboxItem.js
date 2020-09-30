@@ -17,7 +17,7 @@ const CheckboxItem = ({ status, onClick, item }) => {
         type="checkbox"
         checked={status === CHECKBOX_STATUS.CHECKED}
         ref={checkboxRef}
-        onClick={() => onClick(item)}
+        onChange={() => onClick(item)}
       />
       <span>{item.name}</span>
     </div>

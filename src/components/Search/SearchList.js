@@ -20,13 +20,13 @@ const SearchList = ({ keyword }) => {
   };
 
   const renderEmpty = () => {
-    if (loading || data.length > 0) return null;
+    if (loading || error || data.length > 0) return null;
     return <div className="news-empty">Not Found</div>;
   };
 
   const renderError = () => {
     if (!error || loading) return null;
-    return <div className="news-error">Has Error: {error}</div>;
+    return <div className="news-error">{error}</div>;
   };
 
   // prevent show Not found when component init
