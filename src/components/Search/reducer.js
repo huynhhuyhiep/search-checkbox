@@ -10,7 +10,7 @@ export const fetchNews = (query) => async (dispatch) => {
   dispatch({ type: NEWS.FETCHING });
   try {
     const { data } = await axios({
-      url: `https://hn.algolia.com/api/v1/search?m=0&query=${encodeURIComponent(
+      url: `https://hn.algolia.com/api/v1/search?query=${encodeURIComponent(
         query
       )}`,
     });
