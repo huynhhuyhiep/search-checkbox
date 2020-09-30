@@ -6,25 +6,32 @@ const NEWS = {
   FAIL: 'NEWS_FETCH_FAIL',
 };
 
+let cancelToken;
+const CANCEL_MESSAGE = 'Cancel fetchNews request';
+
 export const fetchNews = (query) => async (dispatch) => {
   dispatch({ type: NEWS.FETCHING });
   try {
+    if (cancelToken) cancelToken.cancel(CANCEL_MESSAGE);
+    cancelToken = axios.CancelToken.source();
     const { data } = await axios({
       url: `https://hn.algolia.com/api/v1/search?query=${encodeURIComponent(
         query
       )}`,
+      cancelToken: cancelToken.token,
     });
 
-    console.log('response', data);
     dispatch({
       type: NEWS.SUCCESS,
       payload: data,
     });
   } catch (error) {
-    dispatch({
-      type: NEWS.FAIL,
-      payload: 'Sorry, something went wrong, please try again!',
-    });
+    if (error?.message !== CANCEL_MESSAGE) {
+      dispatch({
+        type: NEWS.FAIL,
+        payload: 'Sorry, something went wrong, please try again!',
+      });
+    }
   }
 };
 

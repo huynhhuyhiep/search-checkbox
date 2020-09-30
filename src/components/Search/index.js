@@ -1,19 +1,17 @@
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback } from 'react';
 import SearchList from './SearchList';
 import { useDispatch } from 'react-redux';
 import { fetchNews } from './reducer';
 import './Search.css';
-import { useDebounce } from '../../hook';
 
 const Search = () => {
   const dispatch = useDispatch();
-  const [keyword, setKeyword] = useState('');
-
-  useDebounce(() => dispatch(fetchNews(keyword)), 200, [keyword]);
-
-  const handleChange = useCallback((e) => {
-    setKeyword(e.target.value);
-  }, []);
+  const handleChange = useCallback(
+    e => {
+      dispatch(fetchNews(e.target.value));
+    },
+    [dispatch]
+  );
 
   return (
     <>
@@ -24,7 +22,7 @@ const Search = () => {
           className="search-input"
         />
       </div>
-      <SearchList keyword={keyword} />
+      <SearchList />
     </>
   );
 };

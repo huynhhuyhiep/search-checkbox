@@ -1,18 +1,8 @@
 import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
 
-const SearchList = ({ keyword }) => {
+const SearchList = () => {
   const { data, loading, error } = useSelector((state) => state);
-
-  const highlightKeyword = (title) => {
-    if (!keyword) return { __html: title };
-    return {
-      __html: title?.replace(
-        RegExp(keyword, 'gi'),
-        (text) => `<em>${text}</em>` ?? title
-      ),
-    };
-  };
 
   const renderLoading = () => {
     if (!loading || data.length > 0) return null;
@@ -35,17 +25,22 @@ const SearchList = ({ keyword }) => {
     <div className="news-container">
       {renderLoading()}
       {data?.map((item) => {
-        const { title, objectID, story_text } = item;
+        const { _highlightResult, objectID } = item;
+        const { title, story_text } = _highlightResult || {};
         return (
           <div key={objectID} className="news-item">
-            <div
-              className="news-item-title"
-              dangerouslySetInnerHTML={highlightKeyword(title)}
-            />
-            <div
-              className="news-item-content"
-              dangerouslySetInnerHTML={highlightKeyword(story_text)}
-            />
+            {title && (
+              <div
+                className="news-item-title"
+                dangerouslySetInnerHTML={{ __html: title.value }}
+              />
+            )}
+            {story_text && (
+              <div
+                className="news-item-content"
+                dangerouslySetInnerHTML={{ __html: story_text.value }}
+              />
+            )}
           </div>
         );
       })}
