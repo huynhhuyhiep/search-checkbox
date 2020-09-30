@@ -7,53 +7,53 @@ const NESTED_OBJECT = {
   name: 'level 1',
   items: [
     {
-      name: 'level 1.1',
+      name: ' level 2',
       items: [
         {
-          name: 'level 1.1.1',
+          name: 'level 3',
         },
         {
-          name: 'level 1.1.2',
+          name: 'level 3',
           items: [
             {
-              name: 'level 1.2.1',
+              name: 'level 4',
               items: [
                 {
-                  name: 'level 1.2.1.1',
+                  name: 'level 5',
                   items: [
                     {
-                      name: 'level 1.2.1.1.1',
+                      name: 'level 6',
                     },
                     {
-                      name: 'level 1.2.1.1.2',
+                      name: 'level 6',
                     },
                   ],
                 },
                 {
-                  name: 'level 1.2.1.2',
+                  name: 'level 5',
                 },
               ],
             },
           ],
         },
         {
-          name: 'level 1.1.3',
+          name: 'level 3',
           items: [
             {
-              name: 'level 1.1.3.1',
+              name: 'level 4',
             },
             {
-              name: 'level 1.1.3.2',
+              name: 'level 4',
             },
           ],
         },
       ],
     },
     {
-      name: 'level 1.2',
+      name: 'level 2',
       items: [
         {
-          name: 'level 1.2.1',
+          name: 'level 3',
         },
       ],
     },
