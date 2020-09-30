@@ -1,0 +1,5 @@
+export const CHECKBOX_STATUS = {
+  CHECKED: 1,
+  UNCHECKED: 0,
+  PARTIAL_CHECKED: -1,
+};

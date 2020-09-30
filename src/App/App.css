@@ -1,0 +1,11 @@
+.app-content {
+    height: 100vh;
+    flex: 1;
+    overflow: auto;
+    padding: 0 10px 0 10px;
+}
+
+.divider-horizontal {
+    border: none;
+    border-right: 1px solid #eeeeee;
+}
