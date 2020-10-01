@@ -6,7 +6,7 @@ import './Search.css';
 import { useDebounce } from '../../hook';
 
 const Loader = memo(() => {
-  const loading = useSelector(state => state.loading);
+  const loading = useSelector((state) => state.loading);
   if (!loading) return null;
   return <div className="loader" />;
 });
@@ -16,7 +16,7 @@ const Search = () => {
   const [value, setValue] = useState('');
 
   useDebounce(() => dispatch(fetchNews(value)), 100, [value]);
-  const handleChange = useCallback(e => {
+  const handleChange = useCallback((e) => {
     setValue(e.target.value);
   }, []);
 

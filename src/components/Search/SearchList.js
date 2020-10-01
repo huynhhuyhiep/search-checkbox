@@ -24,7 +24,7 @@ const SearchList = () => {
         return (
           <div key={objectID} className="news-item">
             {title && (
-              <a href={url} target="_blank">
+              <a href={url} target="_blank" rel="noopener noreferrer">
                 {urlHighlight && (
                   <div
                     className="news-item-url"
