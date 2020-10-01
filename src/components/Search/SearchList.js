@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
 
 const SearchList = () => {
-  const { data, loading, error } = useSelector(state => state);
+  const { data, loading, error } = useSelector((state) => state);
 
   const renderEmpty = () => {
     if (loading || error || data.length > 0) return null;
@@ -18,8 +18,8 @@ const SearchList = () => {
   if (loading === null) return null;
   return (
     <div className="news-container">
-      {data?.map(item => {
-        const { _highlightResult, objectID, url } = item;
+      {data?.map((item) => {
+        const { _highlightResult, objectID, url, _tags } = item;
         const { title, story_text, url: urlHighlight } = _highlightResult || {};
         return (
           <div key={objectID} className="news-item">
@@ -36,6 +36,13 @@ const SearchList = () => {
                   dangerouslySetInnerHTML={{ __html: title.value }}
                 />
               </a>
+            )}
+            {_tags?.length > 0 && (
+              <div className="flex-row">
+                {_tags.map((item) => (
+                  <div className="news-item-tag flex-center">{item}</div>
+                ))}
+              </div>
             )}
             {story_text && (
               <div

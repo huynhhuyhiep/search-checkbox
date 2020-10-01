@@ -48,9 +48,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, loading: true };
     case NEWS.SUCCESS:
       // remove items dont have title and story_text
-      const data = action.payload?.hits?.filter(
-        (item) => item.title || item.story_text
-      );
+      const data = action.payload?.hits?.filter((item) => item.title);
       return { loading: false, data, error: null, keyword: action.keyword };
     case NEWS.FAIL:
       return { loading: false, error: action.payload, data: [] };
