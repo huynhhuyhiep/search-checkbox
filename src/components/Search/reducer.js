@@ -16,7 +16,7 @@ export const fetchNews = (query) => async (dispatch) => {
     cancelToken = axios.CancelToken.source();
     const { data } = await axios({
       url: `https://hn.algolia.com/api/v1/search?query=${encodeURIComponent(
-        query
+        query,
       )}`,
       cancelToken: cancelToken.token,
     });
@@ -47,8 +47,8 @@ const reducer = (state = initialState, action) => {
     case NEWS.FETCHING:
       return { ...state, loading: true };
     case NEWS.SUCCESS:
-      // remove items dont have title and story_text
-      const data = action.payload?.hits?.filter((item) => item.title);
+      // remove items dont have title
+      const data = action.payload.hits?.filter((item) => item.title) ?? [];
       return { loading: false, data, error: null, keyword: action.keyword };
     case NEWS.FAIL:
       return { loading: false, error: action.payload, data: [] };

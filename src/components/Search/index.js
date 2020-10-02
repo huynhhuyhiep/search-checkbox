@@ -37,6 +37,7 @@ const Search = () => {
   const [value, setValue] = useState('');
 
   useDebounce(() => dispatch(fetchNews(value)), 100, [value]);
+
   const handleChange = useCallback((e) => {
     setValue(e.target.value);
   }, []);

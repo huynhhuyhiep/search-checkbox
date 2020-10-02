@@ -39,8 +39,10 @@ const SearchList = () => {
             )}
             {_tags?.length > 0 && (
               <div className="flex-row">
-                {_tags.map((item) => (
-                  <div className="news-item-tag flex-center">{item}</div>
+                {_tags.map((item, index) => (
+                  <div className="news-item-tag flex-center" key={index}>
+                    {item}
+                  </div>
                 ))}
               </div>
             )}

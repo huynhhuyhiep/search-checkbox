@@ -1,68 +1,12 @@
 import React, { memo, useCallback, useMemo, useState } from 'react';
-import { CHECKBOX_STATUS } from './constant';
+import { CHECKBOX_STATUS, NESTED_OBJECT } from './constant';
 import CheckboxItem from './CheckboxItem';
 import { v4 as uuidv4 } from 'uuid';
-
-const NESTED_OBJECT = {
-  name: 'level 1',
-  items: [
-    {
-      name: ' level 2',
-      items: [
-        {
-          name: 'level 3',
-        },
-        {
-          name: 'level 3',
-          items: [
-            {
-              name: 'level 4',
-              items: [
-                {
-                  name: 'level 5',
-                  items: [
-                    {
-                      name: 'level 6',
-                    },
-                    {
-                      name: 'level 6',
-                    },
-                  ],
-                },
-                {
-                  name: 'level 5',
-                },
-              ],
-            },
-          ],
-        },
-        {
-          name: 'level 3',
-          items: [
-            {
-              name: 'level 4',
-            },
-            {
-              name: 'level 4',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      name: 'level 2',
-      items: [
-        {
-          name: 'level 3',
-        },
-      ],
-    },
-  ],
-};
 
 const Checkbox = () => {
   // Obj contain all status of checkbox, accessed by key
   const [checkboxStatus, setCheckboxStatus] = useState({});
+
   const nestedObj = useMemo(() => {
     const setParent = (item) => {
       item.key = uuidv4();
@@ -106,12 +50,12 @@ const Checkbox = () => {
         const countCheckedChildren = items.reduce(
           (sum, el) =>
             (sum += checkboxStatus[el.key] === CHECKBOX_STATUS.CHECKED),
-          0
+          0,
         );
         const countPartialCheckedChildren = items.reduce(
           (sum, el) =>
             (sum += checkboxStatus[el.key] === CHECKBOX_STATUS.PARTIAL_CHECKED),
-          0
+          0,
         );
 
         let status;

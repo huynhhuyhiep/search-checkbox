@@ -7,6 +7,8 @@ Using GitHub Actions for GitHub Pages Deploy
 ## Available Scripts
 
 In the project directory, you can run:
+### `npm install`
+Install node module
 
 ### `npm start`
 
@@ -25,4 +27,4 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 ## Note
-To update nested object that build list checkbox, [go here](https://github.com/huynhhuyhiep/search-checkbox/blob/34e5769628b996d4975fe2dd82146ae9176db00e/src/components/Checkbox/index.js#L6-L61)
+To update nested object that build list checkbox, go `components/Checkbox/constant.js`
